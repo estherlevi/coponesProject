@@ -1,0 +1,54 @@
+<div class="grid">
+    <div class="col-10">
+        <p-dataView [value]="items" layout="grid">
+
+            <ng-template pTemplate="header">
+                <div class="header-dataView">
+                    <p-dropdown [options]="categoryOptions" [(ngModel)]="catgoryName" placeholder="Sort By Catgory" (onChange)="onSortCatgoryChange($event)" styleClass="mb-2 md:mb-0"></p-dropdown>
+                    <span class="p-input-icon-left mb-2 md:mb-0">
+                <i class="pi pi-search" (click)="onSortMaxPriceChange($event)"></i>
+                <input type="number" pInputText placeholder="Search by Max Price"  [(ngModel)]="maxPrice" >
+            </span>
+                </div>
+            </ng-template>
+            <ng-template let-coupon pTemplate="gridItem">
+                <div class="col-2">
+                    <div class="coupon-list-item">
+                        <div class="coupon-item-top">
+                            <span class="item-top coupon-category">{{coupon.category}}</span>
+                            <span class="item-top coupon-startDate">{{coupon.startDate | date :  "dd/MM/y"}} - {{coupon.endDate| date :  "dd/MM/y" }}</span>
+                        </div>
+
+                        <img [src]="coupon.image" class="coupon-image" />
+                        <div class="coupon-list-detail">
+                            <div class="coupon-title">{{coupon.title}}</div>
+                            <div class="coupon-description">{{coupon.description}}</div>
+                        </div>
+                        <div class="coupon-list-action">
+                            <span class="coupon-price">${{coupon.price}}</span>
+                            <p-button icon="pi pi-shopping-cart" (onClick)="cartCoupon(coupon)"></p-button>
+                            <span class="coupon-price">{{coupon.amount}} amount</span>
+
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+    <div class="col-2">
+        <p-dataView [value]="itemsOfCustomer" layout="list">
+            <ng-template pTemplate="header">
+                <div class="header-dataView">All Coupons Of Customer</div>
+            </ng-template>
+            <ng-template let-coupon pTemplate="listItem">
+                <div class="col-12">
+                    <div class="coupon-list-detail">
+                        <div class="coupon-title">{{coupon.title}}</div>
+                        <div class="coupon-description">{{coupon.description}}</div>
+                        <span class="coupon-price">${{coupon.price}}</span>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+</div>

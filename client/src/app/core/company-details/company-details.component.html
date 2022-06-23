@@ -1,0 +1,20 @@
+<div class="field">
+    <label for="name">Name</label>
+    <input required #name="ngModel" [class.ng-invalid]="name.errors" [class.ng-dirty]="name.dirty && name.errors" type="text" pInputText id="name" [(ngModel)]="company.name" />
+    <small *ngIf="name.errors" id="name-help" class="p-error block">name is required.</small>
+</div>
+<div class="field">
+    <label for="email">Email</label>
+    <input required #email="ngModel" [class.ng-invalid]="email.errors" [class.ng-dirty]="email.dirty && email.errors" type="email" pInputText id="email" [(ngModel)]="company.email" />
+    <small *ngIf="email.errors" id="email-help" class="p-error block">email is required.</small>
+</div>
+<div class="field">
+    <label for="password">Password</label>
+    <input required #password="ngModel" [class.ng-invalid]="password.errors" [class.ng-dirty]="password.dirty && password.errors" type="text" pInputText id="password" [(ngModel)]="company.password" />
+    <small *ngIf="password.errors" id="password-help" class="p-error block">password is required.</small>
+</div>
+
+
+
+<button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCompany()" [disabled]="!name.valid || !email.valid || !password.valid"></button>
+<button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-text" (click)="deleteCompany()" *ngIf="company.id"></button>

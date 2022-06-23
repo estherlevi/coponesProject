@@ -1,0 +1,15 @@
+<div class="login-card">
+    <p-card>
+        <ng-template pTemplate="header">
+            Login Page
+        </ng-template>
+        <div class="login-form">
+            <input type="email" pInputText [(ngModel)]="email" placeholder="email" />
+            <input type="password" pInputText [(ngModel)]="password" placeholder="password" />
+            <p-dropdown [options]="typeOptions" [(ngModel)]="type" placeholder="Select Type"></p-dropdown>
+        </div>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple type="button" label="Login" class="p-button-warning" (click)="login()"></button>
+        </ng-template>
+    </p-card>
+</div>

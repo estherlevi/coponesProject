@@ -1,0 +1,47 @@
+<p-card [style]="{'width': '25rem', 'margin-bottom': '2em'}" *ngIf="coupon">
+    <ng-template pTemplate="header" *ngIf="coupon.image">
+        <img [src]="coupon.image" style="width: 100%; HEIGHT: 20VH;object-fit: cover;">
+    </ng-template>
+
+    <div class="field">
+        <label for="category">Category</label>
+        <p-dropdown [required]="true" #category="ngModel" [class.ng-invalid]="category.errors" [class.ng-dirty]="category.dirty && category.errors" [options]="categoryOptions" [(ngModel)]="coupon.category" placeholder="Select Category"></p-dropdown>
+        <small *ngIf="category.errors" id="category-help" class="p-error block">category is required.</small>
+    </div>
+    <div class="field">
+        <label for="startDate">StartDate</label>
+        <input required #startDate="ngModel" [class.ng-invalid]="startDate.errors" [class.ng-dirty]="startDate.dirty && startDate.errors" type="date" pInputText id="startDate" [(ngModel)]="coupon.startDate" />
+        <small *ngIf="startDate.errors" id="startDate-help" class="p-error block">startDate is required.</small>
+    </div>
+    <div class="field">
+        <label for="endDate">EndDate</label>
+        <input required #endDate="ngModel" [class.ng-invalid]="endDate.errors" [class.ng-dirty]="endDate.dirty && endDate.errors" type="date" pInputText id="endDate" [(ngModel)]="coupon.endDate" />
+        <small *ngIf="endDate.errors" id="endDate-help" class="p-error block">endDate is required.</small>
+    </div>
+    <div class="field">
+        <label for="title">Title</label>
+        <input required #title="ngModel" [class.ng-invalid]="title.errors" [class.ng-dirty]="title.dirty && title.errors" type="text" pInputText id="title" [(ngModel)]="coupon.title" />
+        <small *ngIf="title.errors" id="title-help" class="p-error block">title is required.</small>
+    </div>
+    <div class="field">
+        <label for="description">Description</label>
+        <input required #description="ngModel" [class.ng-invalid]="description.errors" [class.ng-dirty]="description.dirty && description.errors" type="text" pInputText id="description" [(ngModel)]="coupon.description" />
+        <small *ngIf="description.errors" id="description-help" class="p-error block">description is required.</small>
+    </div>
+    <div class="field">
+        <label for="price">Price</label>
+        <input required #price="ngModel" [class.ng-invalid]="price.errors" [class.ng-dirty]="price.dirty && price.errors" type="number" pInputText id="price" [(ngModel)]="coupon.price" />
+        <small *ngIf="price.errors" id="price-help" class="p-error block">price is required.</small>
+    </div>
+    <div class="field">
+        <label for="amount">Amount</label>
+        <input required #amount="ngModel" [class.ng-invalid]="amount.errors" [class.ng-dirty]="amount.dirty && amount.errors" type="number" pInputText id="amount" [(ngModel)]="coupon.amount" />
+        <small *ngIf="amount.errors" id="amount-help" class="p-error block">amount is required.</small>
+    </div>
+    <div class="field">
+        <label for="image">Image</label>
+        <input type="file" pInputText id="image" (change)="imageUplode($event)" />
+    </div>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()" [disabled]="!category.valid || !startDate.valid || !endDate.valid || !title.valid || !description.valid || !price.valid || !amount.valid"></button>
+    <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-text" (click)="deleteCoupon()" *ngIf="coupon.id"></button>
+</p-card>
