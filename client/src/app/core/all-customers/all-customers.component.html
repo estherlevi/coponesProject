@@ -24,6 +24,6 @@
     </ng-template>
 </p-table>
 
-<p-dialog [(visible)]="openDialog" [style]="{width: '450px'}" header="Customer Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="openDialog" [style]="{width: '450px'}" header="Customer Details" [modal]="true" styleClass="p-fluid" (onHide)="onClose($event)">
     <app-customer-details *ngIf="selectCustomer" [customer]="selectCustomer" (onClose)="onClose($event)"></app-customer-details>
 </p-dialog>
